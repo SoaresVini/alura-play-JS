@@ -1,4 +1,4 @@
-import {conectaApi} from "./conectaAPI.js";
+import {api} from "./api.js";
 
 const listaVideos = document.querySelector("[data-lista]")
 
@@ -26,8 +26,11 @@ function  criarListaVideos(element) {
 }
 
 async function get() {
-    const lista = await conectaApi.listaVideos();
-    lista.forEach(element => listaVideos.appendChild(criarListaVideos(element)))
+    try {
+        const lista = await api.listaVideos();
+        lista.forEach(element => listaVideos.appendChild(criarListaVideos(element)));
+    } catch {
+        listaVideos.innerHTML = '<h2 class="mensagem__titulo">Não foi possivel carregar a lista de videos</h2>'
+    }
 }
-
 get()

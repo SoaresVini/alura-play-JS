@@ -21,6 +21,9 @@ async function criarVideos(titulo, descricao, url, imagem) {
             imagem: imagem
         })
     });
+    if(!conexao.ok) {
+        throw new Error("Não foi possivel carregar o video")
+    }
 
     const conexaoConvertida = conexao.json();
 
@@ -28,9 +31,9 @@ async function criarVideos(titulo, descricao, url, imagem) {
 
 }
 
-export const conectaApi = {
+export const api = {
     listaVideos,
-    criarVideos,
+    criarVideos
 }
 
 
